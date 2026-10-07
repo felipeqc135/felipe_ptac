@@ -1,94 +1,76 @@
 import React, { useState } from 'react';
 import './index.css';
 
-// Componente para exibir o cartão da ideia
-function CardIdeia({ item, onCurtir, onDeletar }) {
-  return (
-    <div className="card">
-      <p className="conteudo">{item.titulo}</p>
-      <div className="botoes-card">
-        <button className="btn-like" onClick={() => onCurtir(item.id)}>
-          Curtir ({item.curtidas})
-        </button>
-        <button className="btn-apagar" onClick={() => onDeletar(item.id)}>
-          Remover
-        </button>
-      </div>
-    </div>
-  );
-}
-
 export default function App() {
-  // Lista inicial
-  const [ideias, setIdeias] = useState([
-    { id: 1, titulo: 'Criar app em React', curtidas: 3 },
-    { id: 2, titulo: 'Modo Escuro no Painel', curtidas: 5 }
-  ]);
+  const [ideias, setIdeias] = useState([]);
+  const [textoIdeia, setTextoIdeia] = useState('');
 
-  const [texto, setTexto] = useState('');
-
-  // Adiciona item na lista usando concat
-  const criarNovaIdeia = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
-    if (texto.trim() === '') return;
+    if (!textoIdeia.trim()) return;
 
-    const objetoIdeia = {
-      id: Date.now(),
-      titulo: texto.trim(),
-      curtidas: 0
-    };
+    setIdeias((prev) => [
+      ...prev,
+      { id: crypto.randomUUID(), texto: textoIdeia.trim(), curtidas: 0 }
+    ]);
+    setTextoIdeia('');
+  }
 
-    setIdeias(ideias.concat(objetoIdeia));
-    setTexto('');
-  };
+  function handleCurtir(id) {
+    setIdeias((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, curtidas: item.curtidas + 1 } : item
+      )
+    );
+  }
 
-  // Incrementa curtidas
-  const incrementarCurtida = (idAlvo) => {
-    const listaAtualizada = ideias.map((elemento) => {
-      if (elemento.id === idAlvo) {
-        return { ...elemento, curtidas: elemento.curtidas + 1 };
-      }
-      return elemento;
-    });
-    setIdeias(listaAtualizada);
-  };
-
-  // Remove item da lista
-  const removerIdeia = (idAlvo) => {
-    setIdeias(ideias.filter((elemento) => elemento.id !== idAlvo));
-  };
+  function handleRemover(id) {
+    setIdeias((prev) => prev.filter((item) => item.id !== id));
+  }
 
   return (
-    <div className="painel-principal">
-      <header className="cabecalho">
-        <h1>Suas Ideias</h1>
-      </header>
+    <main className="container">
+      <h1>Minhas Ideias</h1>
 
-      <form onSubmit={criarNovaIdeia} className="campo-add">
+      <form onSubmit={handleSubmit} className="form-inline">
         <input
           type="text"
-          placeholder="O que você está pensando?"
-          value={texto}
-          onChange={(e) => setTexto(e.target.value)}
+          placeholder="O que tem em mente?"
+          value={textoIdeia}
+          onChange={(e) => setTextoIdeia(e.target.value)}
         />
-        <button type="submit" className="btn-confirmar">Salvar</button>
+        <button type="submit" className="btn-salvar">
+          Salvar
+        </button>
       </form>
 
-      <section className="grade-ideias">
-        {ideias.length === 0 ? (
-          <p className="mensagem-vazia">Sem sugestões no momento.</p>
-        ) : (
-          ideias.map((ideia) => (
-            <CardIdeia
-              key={ideia.id}
-              item={ideia}
-              onCurtir={incrementarCurtida}
-              onDeletar={removerIdeia}
-            />
-          ))
-        )}
-      </section>
-    </div>
+      {ideias.length === 0 ? (
+        <p className="empty-message">Nenhuma ideia anotada.</p>
+      ) : (
+        <div className="lista-ideias">
+          {ideias.map((ideia) => (
+            <div key={ideia.id} className="item-ideia">
+              <span>{ideia.texto}</span>
+              <div className="item-acoes">
+                <button
+                  type="button"
+                  className="btn-curtir"
+                  onClick={() => handleCurtir(ideia.id)}
+                >
+                  Curtir ({ideia.curtidas})
+                </button>
+                <button
+                  type="button"
+                  className="btn-remover"
+                  onClick={() => handleRemover(ideia.id)}
+                >
+                  Excluir
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </main>
   );
 }
-//qualse

@@ -1,98 +1,88 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
 }
-
 body {
-  background-color: #f1f5f9;
-  color: #334155;
-  padding: 30px 15px;
+  background-color: #fafafa;
+  color: #171717;
   display: flex;
   justify-content: center;
+  padding-top: 5rem;
 }
-
-.painel-principal {
+.container {
   width: 100%;
-  max-width: 500px;
+  max-width: 480px;
+  text-align: center;
+  padding: 0 1rem;
 }
-
-.cabecalho h1 {
-  font-size: 1.6rem;
-  margin-bottom: 20px;
-  color: #0f172a;
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #0a0a0a;
 }
-
-.campo-add {
+.form-inline {
   display: flex;
-  gap: 10px;
-  margin-bottom: 25px;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
-
-.campo-add input {
+.form-inline input {
   flex: 1;
-  padding: 10px 12px;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  outline: none;
   font-size: 0.95rem;
 }
-
-.btn-confirmar {
+.btn-salvar {
   background-color: #2563eb;
-  color: #ffffff;
+  color: #fff;
   border: none;
-  padding: 10px 18px;
-  border-radius: 6px;
-  font-weight: bold;
+  border-radius: 8px;
+  padding: 0.7rem 1.25rem;
+  font-weight: 600;
   cursor: pointer;
 }
-
-.grade-ideias {
+.empty-message {
+  color: #a3a3a3;
+  font-size: 0.95rem;
+}
+.lista-ideias {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.6rem;
 }
-
-.card {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 14px;
+.item-ideia {
+  background-color: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
-.conteudo {
-  font-size: 0.95rem;
-  color: #1e293b;
-}
-
-.botoes-card {
+.item-acoes {
   display: flex;
-  gap: 6px;
+  gap: 0.5rem;
 }
-
-.botoes-card button {
-  border: none;
-  padding: 6px 10px;
-  border-radius: 4px;
-  font-size: 0.8rem;
+.btn-curtir {
+  background-color: #10b9811f;
+  border: 1px solid #10b9814d;
+  color: #059669;
+  border-radius: 8px;
+  padding: 0.4rem 0.85rem;
+  font-weight: 600;
   cursor: pointer;
 }
-
-.btn-like {
-  background-color: #e0e7ff;
-  color: #3730a3;
-}
-
-.btn-apagar {
-  background-color: #fee2e2;
-  color: #991b1b;
-}
-
-.mensagem-vazia {
-  color: #94a3b8;
-  font-size: 0.9rem;
+.btn-remover {
+  background-color: #ef44441f;
+  border: 1px solid #ef44444d;
+  color: #dc2626;
+  border-radius: 8px;
+  padding: 0.4rem 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
 }
