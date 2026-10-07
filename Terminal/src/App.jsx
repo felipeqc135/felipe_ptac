@@ -28,7 +28,7 @@ export default function App() {
         feita: false // RF3: Propriedade booleana para controle de conclusão
       }
     ]);
-            ,
+            
     // Limpa os campos após o sucesso
     setTextoIdeia('');
     setErro('');
