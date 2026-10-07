@@ -4,6 +4,7 @@
   padding: 0;
   font-family: system-ui, -apple-system, sans-serif;
 }
+
 body {
   background-color: #fafafa;
   color: #171717;
@@ -11,24 +12,28 @@ body {
   justify-content: center;
   padding-top: 5rem;
 }
+
 .container {
   width: 100%;
   max-width: 480px;
   text-align: center;
   padding: 0 1rem;
 }
+
 h1 {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 2rem;
   color: #0a0a0a;
 }
+
 .form-inline {
   display: flex;
   gap: 0.5rem;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem; /* Reduzido para dar espaço para a mensagem de erro logo abaixo */
 }
+
 .form-inline input {
   flex: 1;
   padding: 0.7rem 1rem;
@@ -37,6 +42,7 @@ h1 {
   outline: none;
   font-size: 0.95rem;
 }
+
 .btn-salvar {
   background-color: #2563eb;
   color: #fff;
@@ -45,16 +51,35 @@ h1 {
   padding: 0.7rem 1.25rem;
   font-weight: 600;
   cursor: pointer;
+  transition: background-color 0.2s;
 }
+
+.btn-salvar:hover {
+  background-color: #1d4ed8;
+}
+
+/* RF6: Estilização da mensagem de erro */
+.error-message {
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  padding-left: 0.25rem;
+}
+
 .empty-message {
   color: #a3a3a3;
   font-size: 0.95rem;
+  margin-top: 2rem;
 }
+
 .lista-ideias {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  margin-top: 1.5rem;
 }
+
 .item-ideia {
   background-color: #fff;
   border: 1px solid #f0f0f0;
@@ -63,26 +88,55 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
+
+/* Área clicável do texto da ideia */
+.texto-ideia {
+  cursor: pointer;
+  user-select: none;
+  flex: 1;
+  text-align: left;
+  margin-right: 1rem;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
 .item-acoes {
   display: flex;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 0.75rem;
 }
-.btn-curtir {
-  background-color: #10b9811f;
-  border: 1px solid #10b9814d;
-  color: #059669;
-  border-radius: 8px;
-  padding: 0.4rem 0.85rem;
-  font-weight: 600;
+
+/* Estilização sutil para o checkbox */
+.item-acoes input[type="checkbox"] {
+  width: 1.1rem;
+  height: 1.1rem;
   cursor: pointer;
+  accent-color: #2563eb; /* Deixa o checkbox azul ao marcar */
 }
+
 .btn-remover {
   background-color: #ef44441f;
   border: 1px solid #ef44444d;
   color: #dc2626;
   border-radius: 8px;
-  padding: 0.4rem 0.85rem;
+  padding: 0.4rem 0.6rem;
   font-weight: 600;
   cursor: pointer;
+  line-height: 1;
+  transition: all 0.2s;
+}
+
+.btn-remover:hover {
+  background-color: #ef444433;
+}
+
+/* RF5: Estilização do rodapé com os contadores */
+.rodape {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+  color: #737373;
+  font-size: 0.875rem;
 }
